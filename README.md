@@ -153,7 +153,7 @@ classDiagram
 ![System Architecture and Class Diagram](docs/system_diagram.png)
 
 * Full-resolution drawing: [Google Drive Link](https://drive.google.com/file/d/1RoIWKrtxsQdbZA15A9k0wHQC-ORTJWj-/view)
-* Draw.io Editable Source: [`docs/EmbeddedPractical.drawio`](docs/EmbeddedPractical.drawio)
+* Draw.io Editable Source: [`docs/EmbeddedPractical.drawio`](https://drive.google.com/file/d/1RoIWKrtxsQdbZA15A9k0wHQC-ORTJWj-/view?usp=sharing)
 
 ---
 
