@@ -180,10 +180,10 @@ The repository includes two implementations under [`src/`](src/):
 
 ---
 
-## Repository Structure
+## Project Structure
 
 ```text
-RS2_Embreadded/
+Traffic Light Project_1/
 ├── .gitignore
 ├── LICENSE
 ├── README.md
