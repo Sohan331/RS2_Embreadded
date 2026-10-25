@@ -27,7 +27,7 @@ An interactive smart traffic control system featuring an on-demand pedestrian cr
 - **Documentation:** [Read Project Documentation & Sequence Diagram](./Traffic%20Light%20Project_2/README.md)
 - **Firmware Sketch:** [`Traffic Light Project_2/traffic_light_controller.ino`](./Traffic%20Light%20Project_2/traffic_light_controller.ino)
 - **Schematics & Diagrams:** Included in [`Traffic Light Project_2/`](./Traffic%20Light%20Project_2) ([Draw.io Source](https://drive.google.com/file/d/1IKe1vXCG48pYgHF-5uRdoNBxFWU_hF1x/view?usp=sharing))
-- **Simulation:** [Tinkercad Circuit](https://www.tinkercad.com/things/5nGRqSHxPYQ-pr2-update-traffic-light-system)
+- **Simulation:** [Tinkercad Circuit](https://www.tinkercad.com/things/lw6mdx8b40G-copy-of-pr2-update-traffic-light-system?sharecode=GDI3W6okflb5UjewmtQqD8fbNvfhd8kKurzvTqLfaIY)
 
 ---
 

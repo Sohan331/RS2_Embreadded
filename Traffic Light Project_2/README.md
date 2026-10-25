@@ -1,7 +1,7 @@
 # Smart Traffic Light System with Pedestrian Crossing
 
 [![Platform: Arduino Uno](https://img.shields.io/badge/Platform-Arduino%20Uno-00979D?logo=arduino&logoColor=white)](https://www.arduino.cc/)
-[![Simulation: Tinkercad](https://img.shields.io/badge/Simulated%20on-Tinkercad-blue?logo=autodesk&logoColor=white)](https://www.tinkercad.com/things/5nGRqSHxPYQ-pr2-update-traffic-light-system)
+[![Simulation: Tinkercad](https://img.shields.io/badge/Simulated%20on-Tinkercad-blue?logo=autodesk&logoColor=white)](https://www.tinkercad.com/things/lw6mdx8b40G-copy-of-pr2-update-traffic-light-system?sharecode=GDI3W6okflb5UjewmtQqD8fbNvfhd8kKurzvTqLfaIY)
 [![Diagram: Draw.io](https://img.shields.io/badge/Diagram-Draw.io-F08705?logo=diagramsdotnet&logoColor=white)](https://drive.google.com/file/d/1IKe1vXCG48pYgHF-5uRdoNBxFWU_hF1x/view?usp=sharing)
 
 An interactive, priority-based traffic light controller developed for the **Arduino Uno (ATmega328P)**. This system manages vehicular traffic while integrating an on-demand pedestrian crossing request via a digital pushbutton.
@@ -102,7 +102,7 @@ sequenceDiagram
 ## 📐 Schematics & System Diagrams
 
 ### Circuit Schematic
-Interactive Tinkercad Model: [Tinkercad Simulation](https://www.tinkercad.com/things/5nGRqSHxPYQ-pr2-update-traffic-light-system)
+Interactive Tinkercad Model: [Tinkercad Simulation](https://www.tinkercad.com/things/lw6mdx8b40G-copy-of-pr2-update-traffic-light-system?sharecode=GDI3W6okflb5UjewmtQqD8fbNvfhd8kKurzvTqLfaIY)
 
 ![Circuit Diagram](./Circuit%20Diagram.png)
 
