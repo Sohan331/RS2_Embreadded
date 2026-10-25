@@ -20,25 +20,14 @@ An automated traffic control system developed for the **Arduino Uno (ATmega328P)
 
 ---
 
-## Repository Structure
+### 🚸 [Traffic Light Project 2](./Traffic%20Light%20Project_2)
+An interactive smart traffic control system featuring an on-demand pedestrian crossing routine. Developed for the **Arduino Uno (ATmega328P)**, this project coordinates vehicular traffic signals alongside dedicated pedestrian stop/walk indicators and a push-button crossing request.
 
-```text
-RS2_Embreadded/
-├── README.md                         # Main repository landing overview
-└── Traffic Light Project_1/          # Traffic light controller project
-    ├── .gitignore                    # Project-level gitignore
-    ├── LICENSE                       # MIT License
-    ├── README.md                     # Detailed project documentation & specs
-    ├── docs/                         # Schematics, system diagrams & Draw.io models
-    │   ├── circuit_diagram.png
-    │   ├── system_diagram.png
-    │   └── EmbeddedPractical.drawio
-    └── src/                          # Arduino firmware sketches
-        ├── baseline_delay/
-        │   └── baseline_delay.ino
-        └── traffic_light_controller/
-            └── traffic_light_controller.ino
-```
+- **Folder:** [`Traffic Light Project_2/`](./Traffic%20Light%20Project_2)
+- **Documentation:** [Read Project Documentation & Sequence Diagram](./Traffic%20Light%20Project_2/README.md)
+- **Firmware Sketch:** [`Traffic Light Project_2/traffic_light_controller.ino`](./Traffic%20Light%20Project_2/traffic_light_controller.ino)
+- **Schematics & Diagrams:** Included in [`Traffic Light Project_2/`](./Traffic%20Light%20Project_2) ([Draw.io Source](https://drive.google.com/file/d/1IKe1vXCG48pYgHF-5uRdoNBxFWU_hF1x/view?usp=sharing))
+- **Simulation:** [Tinkercad Circuit](https://www.tinkercad.com/things/5nGRqSHxPYQ-pr2-update-traffic-light-system)
 
 ---
 
