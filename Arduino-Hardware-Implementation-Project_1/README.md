@@ -8,12 +8,29 @@ Real-hardware implementation of the **Task 1 Traffic Light System** built and te
 
 ---
 
-## 🎥 Hardware Demonstration & Lab Setup
+## 🎥 Live Hardware Demonstration (00:00–00:18, Silent)
 
-- **Video Demo (18 s, silent):** [Watch `demo.mp4`](./demo.mp4) — captures one complete 17-second traffic light cycle on the physical board (`Red` → `Red + Yellow` → `Yellow` → `Green` → `Yellow` → `Red`).
+Complete 17-second traffic light cycle (`Red` → `Red + Yellow` → `Yellow` → `Green` → `Yellow` → `Red`) running on the physical Arduino board:
 
-### Real Breadboard Circuit
-![Real Arduino Hardware Circuit](docs/Arduino%20Implementation_Circuit%20.jpeg)
+<p align="center">
+  <a href="https://raw.githubusercontent.com/Sohan331/RS2_Embreadded/main/Arduino-Hardware-Implementation-Project_1/demo.mp4">
+    <img src="docs/demo_preview.gif" alt="Arduino Traffic Light Hardware Demo" width="680">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://raw.githubusercontent.com/Sohan331/RS2_Embreadded/main/Arduino-Hardware-Implementation-Project_1/demo.mp4">
+    <img src="https://img.shields.io/badge/%E2%96%B6_Open_%2F_Download_Full_Quality_Video-demo.mp4-D90429?style=for-the-badge" alt="Open or Download demo.mp4">
+  </a>
+</p>
+
+---
+
+## 🛠️ Real Lab Breadboard Circuit
+
+<p align="center">
+  <img src="docs/hardware_circuit.jpg" alt="Real Arduino Hardware Circuit" width="680">
+</p>
 
 ---
 
@@ -70,7 +87,9 @@ stateDiagram-v2
 
 - **Editable Source (Versionable XML):** [`docs/EmbeddedPractical.drawio`](docs/EmbeddedPractical.drawio)
 
-![System Diagram](docs/system_diagram.png)
+<p align="center">
+  <img src="docs/system_diagram.png" alt="System Diagram" width="680">
+</p>
 
 ---
 
@@ -81,11 +100,12 @@ Version-friendly text/XML formats (`.ino`, `.md`, Mermaid, `.drawio`) are organi
 ```text
 Arduino-Hardware-Implementation-Project_1/
 ├── README.md                                  # Documentation & Mermaid state diagram
-├── demo.mp4                                   # 18-second silent hardware demo video
+├── demo.mp4                                   # 18-second silent hardware demo video (full quality)
 ├── docs/
 │   ├── EmbeddedPractical.drawio               # Versionable Draw.io diagram source (XML)
 │   ├── system_diagram.png                     # State machine & class diagram overview
-│   └── Arduino Implementation_Circuit .jpeg   # Physical lab breadboard wiring photo
+│   ├── hardware_circuit.jpg                   # Horizontal lab breadboard wiring photo
+│   └── demo_preview.gif                       # Inline auto-playing preview for GitHub
 └── src/
     └── traffic_light_controller/
         └── traffic_light_controller.ino       # Target Arduino Uno firmware sketch
