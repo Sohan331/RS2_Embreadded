@@ -29,6 +29,17 @@ An interactive smart traffic control system featuring an on-demand pedestrian cr
 
 ---
 
+### 🔧 [Arduino Hardware Implementation — Project 1 (Task 3)](./Arduino-Hardware-Implementation-Project_1)
+Lab hardware realization of the Task 1 Traffic Light System on a physical **Arduino Uno (ATmega328P)**, demonstrating the mapping from state machine/class diagrams and Tinkercad simulation to the real target board.
+
+- **Folder:** [`Arduino-Hardware-Implementation-Project_1/`](./Arduino-Hardware-Implementation-Project_1)
+- **Documentation & Mapping:** [Read Task 3 Hardware Documentation](./Arduino-Hardware-Implementation-Project_1/README.md)
+- **Firmware Sketch:** [`Arduino-Hardware-Implementation-Project_1/src/traffic_light_controller/traffic_light_controller.ino`](./Arduino-Hardware-Implementation-Project_1/src/traffic_light_controller/traffic_light_controller.ino)
+- **Diagrams & Circuit Photo:** [`Arduino-Hardware-Implementation-Project_1/docs/`](./Arduino-Hardware-Implementation-Project_1/docs/)
+- **Video Demo (18 s, silent):** [`Arduino-Hardware-Implementation-Project_1/demo.mp4`](./Arduino-Hardware-Implementation-Project_1/demo.mp4)
+
+---
+
 ## License
 
 Each project in this repository is released under its respective license. See [`Traffic Light Project_1/LICENSE`](./Traffic%20Light%20Project_1/LICENSE) for the Traffic Light Controller project.
