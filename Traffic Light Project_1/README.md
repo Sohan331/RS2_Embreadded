@@ -1,14 +1,11 @@
-# Arduino Traffic Light Controller (FSM)
+# Arduino Traffic Light Controller
 
 [![Platform: Arduino Uno](https://img.shields.io/badge/Platform-Arduino%20Uno-00979D?logo=arduino&logoColor=white)](https://www.arduino.cc/)
 [![Language: C++](https://img.shields.io/badge/Language-C%2B%2B-00599C?logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
-[![Architecture: FSM](https://img.shields.io/badge/Architecture-Finite%20State%20Machine-orange)](#system-architecture--fsm-design)
 [![Simulation: Tinkercad](https://img.shields.io/badge/Simulated%20on-Tinkercad-blue?logo=autodesk&logoColor=white)](https://shorturl.at/akzd5)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-An embedded traffic control system developed for the **Arduino Uno (ATmega328P)**. The project models an automated four-phase junction signal using an object-oriented **Finite State Machine (FSM)** architecture and non-blocking timers.
-
-A baseline sequential implementation is also provided for pedagogical comparison.
+An embedded traffic control system developed for the **Arduino Uno (ATmega328P)**. The project models an automated junction signal cycling sequentially through Red, Red + Yellow, Yellow, and Green phases.
 
 ---
 
@@ -20,7 +17,7 @@ A baseline sequential implementation is also provided for pedagogical comparison
   - [Pin Mapping](#pin-mapping)
   - [Electrical Specifications & Resistor Sizing](#electrical-specifications--resistor-sizing)
   - [Circuit Diagram](#circuit-diagram)
-- [System Architecture & FSM Design](#system-architecture--fsm-design)
+- [System Architecture & State Sequence](#system-architecture--state-sequence)
   - [State Transition Model](#state-transition-model)
   - [System Architecture Diagram](#system-architecture-diagram)
 - [Simulation & CAD Assets](#simulation--cad-assets)
@@ -31,27 +28,29 @@ A baseline sequential implementation is also provided for pedagogical comparison
 
 ## Overview
 
-Road traffic controllers require deterministic timing, failsafe light transitions, and modular software design. This project realizes a full 4-phase traffic cycle totaling **44.5 seconds**:
+Road traffic controllers require deterministic timing and clear light transitions. This project realizes a 5-step traffic cycle totaling **17.0 seconds**:
 
-1. **Red** (Stop): 20.0 s
-2. **Red + Yellow** (Pre-green transition): 1.5 s
-3. **Yellow** (Caution / Warning): 3.0 s
-4. **Green** (Proceed): 20.0 s
+1. **Red** (Stop): 4.0 s
+2. **Red + Yellow** (Pre-green preparation): 2.0 s
+3. **Yellow** (Transition): 2.0 s
+4. **Green** (Proceed): 7.0 s
+5. **Yellow** (Caution before stop): 2.0 s
 
-Both the hardware schematic and state machine architecture were validated in Autodesk Tinkercad.
+Both the hardware schematic and control sequence were validated in Autodesk Tinkercad.
 
 ---
 
 ## Cycle Timing & Signal Sequence
 
-| Phase | State Name | Active LEDs | Duration | Purpose / Vehicle Meaning |
+| Step | Signal Phase | Active LEDs | Duration | Purpose / Vehicle Meaning |
 |:---:|:---|:---:|:---:|:---|
-| **1** | `STATE_RED` | **Red** | `20.0 s` | Traffic stop / cross-traffic clearance |
-| **2** | `STATE_RED_YELLOW` | **Red + Yellow** | `1.5 s` | Driver preparation before green |
-| **3** | `STATE_YELLOW` | **Yellow** | `3.0 s` | Warning / caution transition |
-| **4** | `STATE_GREEN` | **Green** | `20.0 s` | Right-of-way granted / traffic flow |
+| **1** | `Red` | **Red** | `4.0 s` | Traffic stop / cross-traffic clearance |
+| **2** | `Red + Yellow` | **Red + Yellow** | `2.0 s` | Driver preparation |
+| **3** | `Yellow` | **Yellow** | `2.0 s` | Pre-green transition |
+| **4** | `Green` | **Green** | `7.0 s` | Right-of-way granted / traffic flow |
+| **5** | `Yellow` | **Yellow** | `2.0 s` | Caution / warning before returning to Red |
 
-$$\text{Total Cycle Duration} = 20.0\,\text{s} + 1.5\,\text{s} + 3.0\,\text{s} + 20.0\,\text{s} = \mathbf{44.5\,\text{s}}$$
+$$\text{Total Cycle Duration} = 4.0\,\text{s} + 2.0\,\text{s} + 2.0\,\text{s} + 7.0\,\text{s} + 2.0\,\text{s} = \mathbf{17.0\,\text{s}}$$
 
 ---
 
@@ -61,9 +60,9 @@ $$\text{Total Cycle Duration} = 20.0\,\text{s} + 1.5\,\text{s} + 3.0\,\text{s} +
 
 | Arduino Pin | Variable Name | Component | Direction | Current Limiter | Description |
 |---|---|---|---|---|---|
-| **Digital Pin 8** | `PIN_RED` | Red 5 mm LED | `OUTPUT` | $220\,\Omega$ | Red stop indicator |
-| **Digital Pin 6** | `PIN_YELLOW` | Yellow 5 mm LED | `OUTPUT` | $220\,\Omega$ | Yellow caution indicator |
-| **Digital Pin 2** | `PIN_GREEN` | Green 5 mm LED | `OUTPUT` | $220\,\Omega$ | Green proceed indicator |
+| **Digital Pin 8** | `red` | Red 5 mm LED | `OUTPUT` | $220\,\Omega$ | Red stop indicator |
+| **Digital Pin 6** | `yellow` | Yellow 5 mm LED | `OUTPUT` | $220\,\Omega$ | Yellow caution indicator |
+| **Digital Pin 2** | `green` | Green 5 mm LED | `OUTPUT` | $220\,\Omega$ | Green proceed indicator |
 | **GND** | — | Breadboard bus | — | — | Common cathode return |
 
 ### Electrical Specifications & Resistor Sizing
@@ -86,17 +85,24 @@ Standard $220\,\Omega \pm 5\%$ (Red-Red-Brown-Gold) through-hole resistors prote
 
 ---
 
-## System Architecture & FSM Design
+## System Architecture & State Sequence
 
 ### State Transition Model
 
 ```mermaid
 stateDiagram-v2
-    [*] --> RED: System Boot / Reset
-    RED --> RED_YELLOW: Timer Expired (20.0 s)
-    RED_YELLOW --> YELLOW: Timer Expired (1.5 s)
-    YELLOW --> GREEN: Timer Expired (3.0 s)
-    GREEN --> RED: Timer Expired (20.0 s)
+    [*] --> RED: setup()
+    RED --> RED_YELLOW: 4.0 s
+    RED_YELLOW --> YELLOW_1: 2.0 s
+    YELLOW_1 --> GREEN: 2.0 s
+    GREEN --> YELLOW_2: 7.0 s
+    YELLOW_2 --> RED: 2.0 s
+
+    RED: Red (HIGH)
+    RED_YELLOW: Red + Yellow (HIGH)
+    YELLOW_1: Yellow (HIGH)
+    GREEN: Green (HIGH)
+    YELLOW_2: Yellow (HIGH)
 ```
 
 ### System Architecture Diagram
@@ -134,9 +140,7 @@ stateDiagram-v2
    ```bash
    git clone https://github.com/Sohan331/RS2_Embreadded.git
    ```
-2. Open either sketch:
-   - For the modular FSM version: open `src/traffic_light_controller/traffic_light_controller.ino`.
-   - For the sequential baseline: open `src/baseline_delay/baseline_delay.ino`.
+2. Open the sketch: [`src/traffic_light_controller/traffic_light_controller.ino`](src/traffic_light_controller/traffic_light_controller.ino).
 3. Under **Tools > Board**, select **Arduino Uno**.
 4. Under **Tools > Port**, select your board's COM port.
 5. Click **Upload** ($\rightarrow$).

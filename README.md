@@ -7,13 +7,11 @@ Welcome to the **RS2 Embedded Systems** repository. This repository organizes em
 ## Projects Directory
 
 ### 🚦 [Traffic Light Project 1](./Traffic%20Light%20Project_1)
-An automated traffic control system developed for the **Arduino Uno (ATmega328P)**. The project models an automated four-phase junction signal using an object-oriented **Finite State Machine (FSM)** architecture and non-blocking timers.
+An automated traffic control system developed for the **Arduino Uno (ATmega328P)**. The project models an automated multi-phase junction signal cycling sequentially through Red, Red + Yellow, Yellow, and Green states.
 
 - **Folder:** [`Traffic Light Project_1/`](./Traffic%20Light%20Project_1)
 - **Documentation:** [Read Project Documentation & Specifications](./Traffic%20Light%20Project_1/README.md)
-- **Firmware Sketches:**
-  - Production FSM: [`Traffic Light Project_1/src/traffic_light_controller/`](./Traffic%20Light%20Project_1/src/traffic_light_controller/)
-  - Sequential Baseline: [`Traffic Light Project_1/src/baseline_delay/`](./Traffic%20Light%20Project_1/src/baseline_delay/)
+- **Firmware Sketch:** [`Traffic Light Project_1/src/traffic_light_controller/traffic_light_controller.ino`](./Traffic%20Light%20Project_1/src/traffic_light_controller/traffic_light_controller.ino)
 - **Schematics & Diagrams:** [`Traffic Light Project_1/docs/`](./Traffic%20Light%20Project_1/docs/)
 - **Simulation:** [Tinkercad Circuit](https://shorturl.at/akzd5)
 - **License:** [MIT License](./Traffic%20Light%20Project_1/LICENSE)
