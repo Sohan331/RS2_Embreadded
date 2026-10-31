@@ -3,7 +3,7 @@
 [![Platform: Arduino Uno](https://img.shields.io/badge/Platform-Arduino%20Uno-00979D?logo=arduino&logoColor=white)](https://www.arduino.cc/)
 [![Language: C++](https://img.shields.io/badge/Language-C%2B%2B-00599C?logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![Architecture: FSM](https://img.shields.io/badge/Architecture-Finite%20State%20Machine-orange)](#system-architecture--fsm-design)
-[![Simulation: Tinkercad](https://img.shields.io/badge/Simulated%20on-Tinkercad-blue?logo=autodesk&logoColor=white)](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation)
+[![Simulation: Tinkercad](https://img.shields.io/badge/Simulated%20on-Tinkercad-blue?logo=autodesk&logoColor=white)](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 An embedded traffic control system developed for the **Arduino Uno (ATmega328P)**. The project models an automated four-phase junction signal using an object-oriented **Finite State Machine (FSM)** architecture and non-blocking timers.
@@ -22,11 +22,8 @@ A baseline sequential implementation is also provided for pedagogical comparison
   - [Circuit Diagram](#circuit-diagram)
 - [System Architecture & FSM Design](#system-architecture--fsm-design)
   - [State Transition Model](#state-transition-model)
-  - [UML Class Diagram](#uml-class-diagram)
   - [System Architecture Diagram](#system-architecture-diagram)
-- [Firmware Implementation](#firmware-implementation)
 - [Simulation & CAD Assets](#simulation--cad-assets)
-- [Repository Structure](#repository-structure)
 - [Getting Started](#getting-started)
 - [License](#license)
 
@@ -41,7 +38,7 @@ Road traffic controllers require deterministic timing, failsafe light transition
 3. **Yellow** (Caution / Warning): 3.0 s
 4. **Green** (Proceed): 20.0 s
 
-Both the hardware schematic and state machine architecture were validated in Autodesk Tinkercad and formalized with UML class models.
+Both the hardware schematic and state machine architecture were validated in Autodesk Tinkercad.
 
 ---
 
@@ -85,7 +82,7 @@ Standard $220\,\Omega \pm 5\%$ (Red-Red-Brown-Gold) through-hole resistors prote
 
 ![Circuit Diagram](docs/circuit_diagram.png)
 
-> Interactive Tinkercad Circuit: [View Simulation](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation)
+> Interactive Tinkercad Circuit: [View Simulation](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k)
 
 ---
 
@@ -102,101 +99,20 @@ stateDiagram-v2
     GREEN --> RED: Timer Expired (20.0 s)
 ```
 
-### UML Class Diagram
-
-The production firmware separates concerns between hardware actuators, non-blocking timing primitives, and high-level state arbitration:
-
-```mermaid
-classDiagram
-    class Timer {
-        -duration : unsigned long
-        -startTime : unsigned long
-        -isRunning : bool
-        +start(durationMs : unsigned long) void
-        +isExpired() bool
-        +reset() void
-        +getRemaining() unsigned long
-    }
-
-    class TrafficLight {
-        -pin : uint8_t
-        -color : String
-        -isOn : bool
-        +begin() void
-        +turnOn() void
-        +turnOff() void
-        +setColor(newColor : String) void
-        +getIsOn() bool
-        +getColor() String
-    }
-
-    class TrafficLightController {
-        -state : TrafficState
-        -currentStateName : String
-        -stateTimer : Timer
-        -redLight : TrafficLight
-        -yellowLight : TrafficLight
-        -greenLight : TrafficLight
-        -applyOutputs(redOn, yellowOn, greenOn) void
-        +start() void
-        +changeState(newState : TrafficState) void
-        +update() void
-        +getCurrentState() String
-    }
-
-    TrafficLightController --> "1" Timer : manages
-    TrafficLightController --> "3" TrafficLight : controls
-```
-
 ### System Architecture Diagram
 
-![System Architecture and Class Diagram](docs/system_diagram.png)
+![System Architecture Diagram](docs/system_diagram.png)
 
 * Full-resolution drawing: [Google Drive Link](https://drive.google.com/file/d/1RoIWKrtxsQdbZA15A9k0wHQC-ORTJWj-/view)
 * Draw.io Editable Source: [`docs/EmbeddedPractical.drawio`](https://drive.google.com/file/d/1RoIWKrtxsQdbZA15A9k0wHQC-ORTJWj-/view?usp=sharing)
 
 ---
 
-## Firmware Implementation
-
-The repository includes two implementations under [`src/`](src/):
-
-1. **Production FSM (`src/traffic_light_controller/traffic_light_controller.ino`)**:
-   - Encapsulated into `TrafficLightController`, `TrafficLight`, and `Timer` classes.
-   - Non-blocking `millis()` architecture avoids CPU stalls.
-   - Extensible for sensor inputs (e.g., pedestrian crossing buttons, inductive loops).
-
-2. **Sequential Baseline (`src/baseline_delay/baseline_delay.ino`)**:
-   - Classical linear prototype using sequential `delay()` calls.
-   - Ideal for initial hardware bring-up and breadboard continuity checks.
-
----
-
 ## Simulation & CAD Assets
 
-* **Tinkercad Simulation**: [https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation)
+* **Tinkercad Simulation**: [https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k)
 * **High-Resolution Diagram (Drive)**: [Full Size System Diagram](https://drive.google.com/file/d/1RoIWKrtxsQdbZA15A9k0wHQC-ORTJWj-/view)
 * **Draw.io Schematic Source**: [`docs/EmbeddedPractical.drawio`](docs/EmbeddedPractical.drawio)
-
----
-
-## Project Structure
-
-```text
-Traffic Light Project_1/
-├── .gitignore
-├── LICENSE
-├── README.md
-├── docs/
-│   ├── circuit_diagram.png         # Breadboard wiring and pin connections
-│   ├── system_diagram.png          # UML class & state machine diagrams
-│   └── EmbeddedPractical.drawio    # Editable diagram source
-└── src/
-    ├── traffic_light_controller/
-    │   └── traffic_light_controller.ino  # Modular OOP non-blocking FSM
-    └── baseline_delay/
-        └── baseline_delay.ino            # Sequential prototype sketch
-```
 
 ---
 

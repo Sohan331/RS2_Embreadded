@@ -15,7 +15,7 @@ An automated traffic control system developed for the **Arduino Uno (ATmega328P)
   - Production FSM: [`Traffic Light Project_1/src/traffic_light_controller/`](./Traffic%20Light%20Project_1/src/traffic_light_controller/)
   - Sequential Baseline: [`Traffic Light Project_1/src/baseline_delay/`](./Traffic%20Light%20Project_1/src/baseline_delay/)
 - **Schematics & Diagrams:** [`Traffic Light Project_1/docs/`](./Traffic%20Light%20Project_1/docs/)
-- **Simulation:** [Tinkercad Circuit](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation)
+- **Simulation:** [Tinkercad Circuit](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k)
 - **License:** [MIT License](./Traffic%20Light%20Project_1/LICENSE)
 
 ---
