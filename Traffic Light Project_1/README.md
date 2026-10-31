@@ -3,7 +3,7 @@
 [![Platform: Arduino Uno](https://img.shields.io/badge/Platform-Arduino%20Uno-00979D?logo=arduino&logoColor=white)](https://www.arduino.cc/)
 [![Language: C++](https://img.shields.io/badge/Language-C%2B%2B-00599C?logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![Architecture: FSM](https://img.shields.io/badge/Architecture-Finite%20State%20Machine-orange)](#system-architecture--fsm-design)
-[![Simulation: Tinkercad](https://img.shields.io/badge/Simulated%20on-Tinkercad-blue?logo=autodesk&logoColor=white)](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k)
+[![Simulation: Tinkercad](https://img.shields.io/badge/Simulated%20on-Tinkercad-blue?logo=autodesk&logoColor=white)](https://shorturl.at/akzd5)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 An embedded traffic control system developed for the **Arduino Uno (ATmega328P)**. The project models an automated four-phase junction signal using an object-oriented **Finite State Machine (FSM)** architecture and non-blocking timers.
@@ -82,7 +82,7 @@ Standard $220\,\Omega \pm 5\%$ (Red-Red-Brown-Gold) through-hole resistors prote
 
 ![Circuit Diagram](docs/circuit_diagram.png)
 
-> Interactive Tinkercad Circuit: [View Simulation](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k)
+> Interactive Tinkercad Circuit: [View Simulation](https://shorturl.at/akzd5)
 
 ---
 
@@ -110,7 +110,7 @@ stateDiagram-v2
 
 ## Simulation & CAD Assets
 
-* **Tinkercad Simulation**: [https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k](https://www.tinkercad.com/things/83Owepj9sud-traffic-light-simulation/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=XXuxEyJS1ANJUC8AO6-fcrHLqsd-5-avkS3vmy3t4-k)
+* **Tinkercad Simulation**: [https://shorturl.at/akzd5](https://shorturl.at/akzd5)
 * **High-Resolution Diagram (Drive)**: [Full Size System Diagram](https://drive.google.com/file/d/1RoIWKrtxsQdbZA15A9k0wHQC-ORTJWj-/view)
 * **Draw.io Schematic Source**: [`docs/EmbeddedPractical.drawio`](docs/EmbeddedPractical.drawio)
 
