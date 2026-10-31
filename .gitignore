@@ -6,10 +6,10 @@ build/
 
 # IDE files
 .vscode/
-.idea/
 *.swp
 *.swo
 *~
+.idea/
 
 # OS artifacts
 Thumbs.db
@@ -20,3 +20,4 @@ Desktop.ini
 temp/
 *.tmp
 files/
+Arduino-Hardware-Implementation-Project_1/Arduino\ Implementation\ Video.mp4
