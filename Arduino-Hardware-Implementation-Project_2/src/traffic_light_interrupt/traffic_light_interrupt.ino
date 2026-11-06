@@ -4,12 +4,12 @@ int green = 11;
 
 int pl_green = 10;
 int pl_red = 7;
-int pl_button = 2; // External Interrupt pin INT0 on Arduino Uno
+int pl_button = 2;
 
-volatile bool button_pressed = false;
+volatile bool pedestrianRequest = false;   // the flag: false = 0, true = 1
 
-void handleButtonPress() {
-  button_pressed = true;
+void buttonPressed() {          // the ISR: keep it tiny
+  pedestrianRequest = true;
 }
 
 void setup() {
@@ -21,7 +21,7 @@ void setup() {
   pinMode(pl_red, OUTPUT);
   pinMode(pl_button, INPUT);
 
-  attachInterrupt(digitalPinToInterrupt(pl_button), handleButtonPress, RISING);
+  attachInterrupt(digitalPinToInterrupt(pl_button), buttonPressed, RISING);
 }
 
 void loop() {
@@ -35,47 +35,60 @@ void loop() {
 
   delay(5000);
 
-  if (button_pressed) {
-    pedestrianCrossing();
+  switch (pedestrianRequest) {
+    case true:
+      pedestrianCrossing();
+      break;
+
+    case false:
+      break;
   }
 
-  // YELLOW
+  // RED + YELLOW, then YELLOW
   digitalWrite(red, HIGH);
   delay(2000);
   digitalWrite(yellow, HIGH);
   delay(2000);
   digitalWrite(red, LOW);
   digitalWrite(yellow, HIGH);
-  delay(2000); // yellow totally will be high for 4seconds.
+  delay(2000);
 
   // GREEN
   digitalWrite(yellow, LOW);
   digitalWrite(green, HIGH);
-  if (button_pressed) {
-    delay(5000);
-  } else {
-    delay(12000);
+
+  switch (pedestrianRequest) {
+    case true:
+      delay(5000);      // someone is waiting -> shorter green
+      break;
+
+    case false:
+      delay(7000);
+      break;
   }
 
-  // Transition back to RED (with pedestrian crossing if requested)
+  // GREEN -> YELLOW
   digitalWrite(green, LOW);
   digitalWrite(yellow, HIGH);
   delay(2000);
 
-  if (button_pressed) {
-    pedestrianCrossing();
+  switch (pedestrianRequest) {
+    case true:
+      pedestrianCrossing();
+      break;
+
+    case false:
+      break;
   }
 }
 
 void pedestrianCrossing() {
-  button_pressed = false;
-
   // Vehicles stop
   digitalWrite(green, LOW);
   digitalWrite(yellow, LOW);
   digitalWrite(red, HIGH);
 
-  // Pedestrians will be waiting for 2 seconds
+  // Pedestrians wait 2 seconds
   digitalWrite(pl_red, HIGH);
   digitalWrite(pl_green, LOW);
   delay(2000);
@@ -88,4 +101,6 @@ void pedestrianCrossing() {
   // Pedestrians stop
   digitalWrite(pl_green, LOW);
   digitalWrite(pl_red, HIGH);
+
+  pedestrianRequest = false;   // work is done -> reset the flag (your f = 0)
 }

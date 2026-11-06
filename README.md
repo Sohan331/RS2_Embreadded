@@ -48,7 +48,7 @@ Lab hardware realization of the Task 2 Smart Traffic Light System with Pedestria
 - **Polling Firmware:** [`Arduino-Hardware-Implementation-Project_2/src/traffic_light_controller/traffic_light_controller.ino`](./Arduino-Hardware-Implementation-Project_2/src/traffic_light_controller/traffic_light_controller.ino)
 - **Interrupt Firmware:** [`Arduino-Hardware-Implementation-Project_2/src/traffic_light_interrupt/traffic_light_interrupt.ino`](./Arduino-Hardware-Implementation-Project_2/src/traffic_light_interrupt/traffic_light_interrupt.ino)
 - **Diagrams & Circuit Photo:** [`Arduino-Hardware-Implementation-Project_2/docs/`](./Arduino-Hardware-Implementation-Project_2/docs/)
-- **Video Demo (1080p, silent):** [`Arduino-Hardware-Implementation-Project_2/Demo.mp4`](./Arduino-Hardware-Implementation-Project_2/Demo.mp4)
+- **Video Demo (1080p, silent):** [Download / Watch `Demo.mp4`](https://raw.githubusercontent.com/Sohan331/RS2_Embreadded/main/Arduino-Hardware-Implementation-Project_2/Demo.mp4)
 
 ---
 

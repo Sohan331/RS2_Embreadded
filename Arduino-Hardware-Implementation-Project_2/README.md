@@ -6,7 +6,7 @@ Real-hardware implementation of **Task 2 (Traffic Light System with Pedestrian C
 
 ## 🎥 Hardware Demo & Circuit
 
-- **Hardware Demo Video (1080p HD, Silent):** [`Demo.mp4`](./Demo.mp4)
+- **Hardware Demo Video (1080p HD, Silent):** [Watch / Download `Demo.mp4`](https://raw.githubusercontent.com/Sohan331/RS2_Embreadded/main/Arduino-Hardware-Implementation-Project_2/Demo.mp4) ([Repository File](./Demo.mp4))
 - **Task 2 Tinkercad Simulation:** [Open Tinkercad Circuit](https://www.tinkercad.com/things/lw6mdx8b40G-copy-of-pr2-update-traffic-light-system?sharecode=GDI3W6okflb5UjewmtQqD8fbNvfhd8kKurzvTqLfaIY)
 
 ### Real Lab Breadboard Setup
@@ -94,10 +94,10 @@ To demonstrate the two ways of retrieving button presses on the same hardware (`
 
 | Aspect | Polling (`traffic_light_controller.ino`) | Hardware Interrupt (`traffic_light_interrupt.ino`) |
 | :--- | :--- | :--- |
-| **Mechanism** | Calls `digitalRead(pl_button)` at fixed checkpoints in `loop()`. | Uses `attachInterrupt(digitalPinToInterrupt(2), handleButtonPress, RISING)`. |
-| **During `delay()`** | CPU is blocked; short button presses during `delay()` are **missed**. | Hardware interrupt `INT0` fires immediately even during `delay()` and latches `volatile bool button_pressed = true`. |
-| **User Experience** | Pedestrian must hold the button until a checkpoint is reached. | A single brief button tap at any moment is reliably recorded and served at the next safe phase. |
-| **Complexity** | Very simple sequential code. | Requires a hardware interrupt pin (`Pin 2` or `Pin 3` on Uno) and a `volatile` flag. |
+| **Mechanism** | Calls `digitalRead(pl_button)` at fixed checkpoints in `loop()`. | Uses `attachInterrupt(digitalPinToInterrupt(pl_button), buttonPressed, RISING)`. |
+| **During `delay()`** | CPU is blocked; short button presses during `delay()` are **missed**. | Hardware interrupt `INT0` fires immediately even during `delay()`, setting `volatile bool pedestrianRequest = true`. |
+| **Resetting Request** | Overwritten on the next `digitalRead(pl_button)` call. | Reset (`pedestrianRequest = false`) at the end of `pedestrianCrossing()` once served. |
+| **User Experience** | Pedestrian must hold the button until a checkpoint is reached. | A single brief button tap at any moment is captured and served at the next safe phase. |
 
 ---
 
@@ -120,3 +120,4 @@ Arduino-Hardware-Implementation-Project_2/
     └── traffic_light_interrupt/
         └── traffic_light_interrupt.ino        # Interrupt-based implementation (INT0 on Pin 2)
 ```
+

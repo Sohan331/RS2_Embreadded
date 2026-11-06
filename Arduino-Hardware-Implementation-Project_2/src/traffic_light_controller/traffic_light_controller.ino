@@ -101,3 +101,4 @@ void pedestrianCrossing() {
   digitalWrite(pl_green, LOW);
   digitalWrite(pl_red, HIGH);
 }
+
