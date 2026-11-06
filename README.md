@@ -40,6 +40,18 @@ Lab hardware realization of the Task 1 Traffic Light System on a physical **Ardu
 
 ---
 
+### 🔧 [Arduino Hardware Implementation — Project 2 (Task 4)](./Arduino-Hardware-Implementation-Project_2)
+Lab hardware realization of the Task 2 Smart Traffic Light System with Pedestrian Crossing on a physical **Arduino Uno (ATmega328P)**, comparing polling-based and interrupt-based button handling.
+
+- **Folder:** [`Arduino-Hardware-Implementation-Project_2/`](./Arduino-Hardware-Implementation-Project_2)
+- **Documentation:** [View Hardware Mapping & Polling vs. Interrupt Comparison](./Arduino-Hardware-Implementation-Project_2/README.md)
+- **Polling Firmware:** [`Arduino-Hardware-Implementation-Project_2/src/traffic_light_controller/traffic_light_controller.ino`](./Arduino-Hardware-Implementation-Project_2/src/traffic_light_controller/traffic_light_controller.ino)
+- **Interrupt Firmware:** [`Arduino-Hardware-Implementation-Project_2/src/traffic_light_interrupt/traffic_light_interrupt.ino`](./Arduino-Hardware-Implementation-Project_2/src/traffic_light_interrupt/traffic_light_interrupt.ino)
+- **Diagrams & Circuit Photo:** [`Arduino-Hardware-Implementation-Project_2/docs/`](./Arduino-Hardware-Implementation-Project_2/docs/)
+- **Video Demo (1080p, silent):** [`Arduino-Hardware-Implementation-Project_2/Demo.mp4`](./Arduino-Hardware-Implementation-Project_2/Demo.mp4)
+
+---
+
 ## License
 
 Each project in this repository is released under its respective license. See [`Traffic Light Project_1/LICENSE`](./Traffic%20Light%20Project_1/LICENSE) for the Traffic Light Controller project.
