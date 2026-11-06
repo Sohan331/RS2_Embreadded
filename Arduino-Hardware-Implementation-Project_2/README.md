@@ -4,9 +4,24 @@ Real-hardware implementation of **Task 2 (Traffic Light System with Pedestrian C
 
 ---
 
-## 🎥 Hardware Demo & Circuit
+## 🎥 Live Hardware Demonstration (1080p HD, Silent)
 
-- **Hardware Demo Video (1080p HD, Silent):** [Watch / Download `Demo.mp4`](https://raw.githubusercontent.com/Sohan331/RS2_Embreadded/main/Arduino-Hardware-Implementation-Project_2/Demo.mp4) ([Repository File](./Demo.mp4))
+<p align="center">
+  <a href="https://raw.githubusercontent.com/Sohan331/RS2_Embreadded/main/Arduino-Hardware-Implementation-Project_2/Demo.mp4">
+    <img src="docs/demo_preview.gif" alt="Arduino Smart Traffic Light Hardware Demo" width="680">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://raw.githubusercontent.com/Sohan331/RS2_Embreadded/main/Arduino-Hardware-Implementation-Project_2/Demo.mp4">
+    <img src="https://img.shields.io/badge/%E2%96%B6_Open_%2F_Download_Full_Quality_Video-Demo.mp4-D90429?style=for-the-badge" alt="Open or Download Demo.mp4">
+  </a>
+</p>
+
+---
+
+## 🛠️ Circuit & Simulation
+
 - **Task 2 Tinkercad Simulation:** [Open Tinkercad Circuit](https://www.tinkercad.com/things/lw6mdx8b40G-copy-of-pr2-update-traffic-light-system?sharecode=GDI3W6okflb5UjewmtQqD8fbNvfhd8kKurzvTqLfaIY)
 
 ### Real Lab Breadboard Setup
@@ -87,12 +102,12 @@ classDiagram
 
 ## 🔘 Button Input: Polling vs. Interrupt Implementation
 
-To demonstrate the two ways of retrieving button presses on the same hardware (`Pin 2` / `INT0`), two sketches are provided in `src/`:
+To compare the two approaches for retrieving button presses on the same hardware (`Pin 2` / `INT0`):
 
-1. **Polling Implementation (Main Project Code):** [`src/traffic_light_controller/traffic_light_controller.ino`](src/traffic_light_controller/traffic_light_controller.ino)
-2. **Interrupt Implementation:** [`src/traffic_light_interrupt/traffic_light_interrupt.ino`](src/traffic_light_interrupt/traffic_light_interrupt.ino)
+1. **Interrupt Implementation (This Folder — Task 4):** [`src/traffic_light_controller/traffic_light_controller.ino`](src/traffic_light_controller/traffic_light_controller.ino)
+2. **Polling Implementation (Task 2 Folder):** [`../Traffic Light Project_2/traffic_light_controller.ino`](../Traffic%20Light%20Project_2/traffic_light_controller.ino)
 
-| Aspect | Polling (`traffic_light_controller.ino`) | Hardware Interrupt (`traffic_light_interrupt.ino`) |
+| Aspect | Polling (`Traffic Light Project_2`) | Hardware Interrupt (`Arduino-Hardware-Implementation-Project_2`) |
 | :--- | :--- | :--- |
 | **Mechanism** | Calls `digitalRead(pl_button)` at fixed checkpoints in `loop()`. | Uses `attachInterrupt(digitalPinToInterrupt(pl_button), buttonPressed, RISING)`. |
 | **During `delay()`** | CPU is blocked; short button presses during `delay()` are **missed**. | Hardware interrupt `INT0` fires immediately even during `delay()`, setting `volatile bool pedestrianRequest = true`. |
@@ -110,14 +125,13 @@ Arduino-Hardware-Implementation-Project_2/
 ├── README.md                                  # Project documentation & Mermaid class diagram
 ├── Demo.mp4                                   # Muted 1080p hardware demonstration video
 ├── docs/
+│   ├── demo_preview.gif                       # Inline auto-playing preview for GitHub
 │   ├── hardware_circuit.jpg                   # Lab Arduino & breadboard photo
 │   ├── tinkercad_circuit.png                  # Task 2 Tinkercad schematic
 │   ├── system_diagram.png                     # State machine diagram overview
 │   └── traffic_light_diagram.drawio           # Versionable Draw.io XML source
 └── src/
-    ├── traffic_light_controller/
-    │   └── traffic_light_controller.ino       # Polling-based implementation (Task 2 code)
-    └── traffic_light_interrupt/
-        └── traffic_light_interrupt.ino        # Interrupt-based implementation (INT0 on Pin 2)
+    └── traffic_light_controller/
+        └── traffic_light_controller.ino       # Interrupt-based hardware sketch (INT0 on Pin 2)
 ```
 

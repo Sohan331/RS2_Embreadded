@@ -6,7 +6,11 @@ int pl_green = 10;
 int pl_red = 7;
 int pl_button = 2;
 
-int button_state = LOW;
+volatile bool pedestrianRequest = false;   // the flag: false = 0, true = 1
+
+void buttonPressed() {          // the ISR: keep it tiny
+  pedestrianRequest = true;
+}
 
 void setup() {
   pinMode(red, OUTPUT);
@@ -16,6 +20,8 @@ void setup() {
   pinMode(pl_green, OUTPUT);
   pinMode(pl_red, OUTPUT);
   pinMode(pl_button, INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(pl_button), buttonPressed, RISING);
 }
 
 void loop() {
@@ -29,54 +35,49 @@ void loop() {
 
   delay(5000);
 
-  button_state = digitalRead(pl_button);
-
-  switch (button_state) {
-    case HIGH:
+  switch (pedestrianRequest) {
+    case true:
       pedestrianCrossing();
       break;
 
-    case LOW:
+    case false:
       break;
   }
 
-  // YELLOW
+  // RED + YELLOW, then YELLOW
   digitalWrite(red, HIGH);
   delay(2000);
   digitalWrite(yellow, HIGH);
   delay(2000);
   digitalWrite(red, LOW);
   digitalWrite(yellow, HIGH);
-  delay(2000); // yellow totally will be high for 4seconds.
- 
+  delay(2000);
 
   // GREEN
-  button_state = digitalRead(pl_button);
-  switch (button_state) {
-    case LOW:
-      digitalWrite(yellow, LOW);
-      digitalWrite(green, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(green, HIGH);
+
+  switch (pedestrianRequest) {
+    case true:
+      delay(5000);      // someone is waiting -> shorter green
+      break;
+
+    case false:
       delay(7000);
-    case HIGH:
-      digitalWrite(yellow, LOW);
-      digitalWrite(green, HIGH);
-      delay(5000);
+      break;
   }
 
-  button_state = digitalRead(pl_button);
+  // GREEN -> YELLOW
+  digitalWrite(green, LOW);
+  digitalWrite(yellow, HIGH);
+  delay(2000);
 
-  switch (button_state) {
-    case HIGH:
-      digitalWrite(green, LOW);
-      digitalWrite(yellow, HIGH);
-      delay(2000);
+  switch (pedestrianRequest) {
+    case true:
       pedestrianCrossing();
       break;
 
-    case LOW:
-      digitalWrite(green, LOW);
-      digitalWrite(yellow, HIGH);
-      delay(2000);
+    case false:
       break;
   }
 }
@@ -87,7 +88,7 @@ void pedestrianCrossing() {
   digitalWrite(yellow, LOW);
   digitalWrite(red, HIGH);
 
-  // Pedestrians will be waiting for 2 seconds
+  // Pedestrians wait 2 seconds
   digitalWrite(pl_red, HIGH);
   digitalWrite(pl_green, LOW);
   delay(2000);
@@ -100,5 +101,6 @@ void pedestrianCrossing() {
   // Pedestrians stop
   digitalWrite(pl_green, LOW);
   digitalWrite(pl_red, HIGH);
-}
 
+  pedestrianRequest = false;   // work is done -> reset the flag (your f = 0)
+}
